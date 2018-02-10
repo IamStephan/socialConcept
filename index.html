@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+	<title>Social Test</title>
+
+	<script src="javascript/vue.min.js"></script>
+	<script src="javascript/jquery.min.js"></script>
+	<script src="javascript/httpVueLoader.js"></script>
+	<script src="javascript/genScript.js"></script>
+
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div id="main">
+		<div>
+			<transition>
+				<topbar></topbar>
+			</transition>
+		</div>
+		
+		<div class="component view">
+			<transition-group tag="div" name="fade">
+				<component v-for="(view, index) in viewList" :is="view" :key="view" :index="index"></component>
+			</transition-group>
+		</div>
+
+		<div class="loader" v-if="loading"></div>
+	</div>
+</body>
+</html>
