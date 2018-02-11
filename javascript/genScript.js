@@ -15,8 +15,6 @@ var gen_mixins={
 };
 
 function init() {
-	console.log(getCookie('settingMaxViews'));
-	console.log(getCookie('settingInitialViews'));
 	main = new Vue({
 		el:'#main',
 		data:{

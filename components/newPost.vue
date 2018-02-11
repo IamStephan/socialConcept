@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="post buttons">
-			<button @click="main.RemoveComp(index)">Post</button>
+			<button @click="Post(index)">Post</button>
 			<button @click="main.RemoveComp(index,'home')">Post and View</button>
 		</div>
 	</div>
@@ -23,6 +23,15 @@
 
 <script>
 	module.exports={
-		mixins:[component_mixins, gen_mixins]
+		mixins:[component_mixins, gen_mixins],
+		methods:{
+			Post:function(index) {
+				if (main.viewList.length < 2) {
+					main.RemoveComp(index,'home')
+				} else {
+					main.RemoveComp(index)
+				}
+			}
+		}
 	}
 </script>

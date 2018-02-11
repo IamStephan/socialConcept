@@ -8,9 +8,23 @@
 				<div>@{{username}}</div>
 			</div>
 			<div class="profile-nav">
-				<div class="item" :class="{active: profileView == 'posts'}" @click="profileView = 'posts'">My posts</div>
-				<div class="item" :class="{active: profileView == 'notifications'}" @click="profileView = 'notifications'">Notifications</div>
-				<div class="item" :class="{active: profileView == 'settings'}" @click="profileView = 'settings'">Settings</div>
+				<div class="item" 
+					:class="{active: profileView == 'posts'}" 
+					@click="profileView = 'posts'">
+					Posts
+				</div>
+				<div class="item" 
+					:class="{active: profileView == 'notifications'}" 
+					@click="profileView = 'notifications'"
+					v-if="isMe">
+					Notifications
+				</div>
+				<div class="item" 
+					:class="{active: profileView == 'settings'}" 
+					@click="profileView = 'settings'"
+					v-if="isMe">
+					Settings
+				</div>
 			</div>
 			<div class="profile-body">
 				<div class="feed" v-if="profileView == 'posts'">
@@ -39,7 +53,7 @@
 					</div>
 				</div>
 
-				<div class="settings" v-if="profileView == 'settings'">
+				<div class="settings" v-if="profileView == 'settings' && isMe">
 					<div class="group">
 						<div class="header">Personal</div>
 						<div class="setting">
@@ -138,6 +152,7 @@
 				firstname:'Stephan',
 				lastname:'Burger',
 				privacy: 'public',
+				isMe:true,
 
 				profileView:'posts',
 
@@ -164,6 +179,9 @@
 		methods:{
 			setMaxViews:function() {
 				var value = $('#mxvws').val();
+				if (value < 1) {
+					value = 1;
+				}
 				setCookie('settingMaxViews', value, 365);
 				main.maxViews = value;
 
