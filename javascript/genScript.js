@@ -15,6 +15,7 @@ var gen_mixins={
 };
 
 function init() {
+	console.log(getCookie('settingInitViews'))
 	main = new Vue({
 		el:'#main',
 		data:{
@@ -28,7 +29,7 @@ function init() {
 				post:null
 			},
 
-			//settings
+			//Global settings
 			maxViews:null,
 			initialViews:[]
 		},
@@ -93,11 +94,14 @@ function init() {
 			profile:httpVueLoader('./components/profile.vue'),
 			group:httpVueLoader('./components/group.vue'),
 			newPost:httpVueLoader('./components/newPost.vue'),
-			viewPost:httpVueLoader('./components/viewPost.vue')
+			viewPost:httpVueLoader('./components/viewPost.vue'),
+			settings:httpVueLoader('./components/settings.vue')
+
 		},
 		mounted:function() {
 			var _this = this;
 			//initial views
+
 			if (getCookie('settingInitViews') == "404") {
 				//default
 				this.initialViews.push('home')
@@ -107,7 +111,7 @@ function init() {
 					var data = cookie.split(',');
 					
 					data.forEach(function(item) {
-						_this.initialViews.push(item);
+						_this.initialViews.unshift(item);
 					})
 				} else {
 					this.ViewComp(cookie);

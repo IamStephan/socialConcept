@@ -4,6 +4,7 @@
 			<button @click="main.ViewComp('home')">Home</button>
 			<button @click="main.ViewComp('profile')">My Profile</button>
 			<button @click="main.ViewComp('newPost')">New Post</button>
+			<button @click="main.ViewComp('settings')">Settings</button>
 		</div>
 	</div>
 </template>

@@ -12,7 +12,7 @@
 			</div>
 			<div class="tile-body">
 				<div class="tile-body-content">
-						<img src="http://localhost/social/1.jpg" style="height:100px;">
+						<img src="http://localhost/social/1.jpg" style="height:130px;">
 					<div>This is the shit</div>
 				</div>
 			</div>
