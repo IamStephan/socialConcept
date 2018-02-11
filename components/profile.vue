@@ -102,11 +102,11 @@
 
 						<div class="setting">
 							<label>Max Views</label>
-							<input type="number" value="3">
+							<input type="number" min="1" :value="main.maxViews" id="mxvws">
 							<div class="button-group">
 								<label>Set setting as:</label>
 								<button>Global</button>
-								<button>Local</button>
+								<button @click="setMaxViews()">Local</button>
 							</div>
 						</div>
 					</div>
@@ -159,6 +159,21 @@
 			profileKey:function() {
 				alert('voker verander!!');
 				main.ViewComp('profile');
+			}
+		},
+		methods:{
+			setMaxViews:function() {
+				var value = $('#mxvws').val();
+				setCookie('settingMaxViews', value, 365);
+				main.maxViews = value;
+
+				this.checkViews();
+			},
+			checkViews:function() {
+				if (main.viewList.length > main.maxViews) {
+					main.viewList.pop();
+					this.checkViews();
+				}
 			}
 		}
 	}

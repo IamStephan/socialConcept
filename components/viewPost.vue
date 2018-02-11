@@ -2,7 +2,6 @@
 	<div class="component">
 		<button @click="main.RemoveComp(index)">Close</button>
 		<h1>Post</h1>
-		<h1>{{postKey}}</h1>
 		<div class="tile">
 			<div class="tile-header">
 				<div class="tile-avatar"></div>

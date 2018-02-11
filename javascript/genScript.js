@@ -10,11 +10,13 @@ var component_mixins = {
 
 var gen_mixins={
 	mounted:function() {
-		main.loading = false;
+		
 	}
 };
 
 function init() {
+	console.log(getCookie('settingMaxViews'));
+	console.log(getCookie('settingInitialViews'));
 	main = new Vue({
 		el:'#main',
 		data:{
@@ -28,7 +30,9 @@ function init() {
 				post:null
 			},
 
-			loading:false
+			//settings
+			maxViews:null,
+			initialViews:[]
 		},
 		methods:{
 			ViewComp:function(comp) {
@@ -41,7 +45,7 @@ function init() {
 						return;
 					}
 				}
-				if (this.viewList.length > 2) {
+				if (this.viewList.length >= this.maxViews) {
 					this.viewList.pop();
 					this.viewList.unshift(comp);
 				} else {
@@ -94,8 +98,54 @@ function init() {
 			viewPost:httpVueLoader('./components/viewPost.vue')
 		},
 		mounted:function() {
-			var initView = "newPost"
-			this.ViewComp(initView);
+			var _this = this;
+			//initial views
+			if (getCookie('settingInitViews') == "404") {
+				//default
+				this.initialViews.push('home')
+			} else {
+				var cookie = getCookie('settingInitViews');
+				if (cookie.search(',') != -1) {
+					var data = cookie.split(',');
+					
+					data.forEach(function(item) {
+						_this.initialViews.push(item);
+					})
+				} else {
+					this.ViewComp(cookie);
+				}
+			}
+
+			//maxViews
+			if (getCookie('settingMaxViews') == '404') {
+				//default
+				this.maxViews = 3;
+			} else {
+				this.maxViews = getCookie('settingMaxViews');
+			}
+			
+			this.initialViews.forEach(function(item) {
+				_this.ViewComp(item);
+			})
+			
 		}
 	})
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0; i<ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1);
+		if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+	}
+	return "404";
+}
+
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	var expires = "expires="+d.toUTCString();
+	document.cookie = cname + "=" + cvalue + "; " + expires;
 }

@@ -25,8 +25,6 @@
 				<component v-for="(view, index) in viewList" :is="view" :key="view" :index="index"></component>
 			</transition-group>
 		</div>
-
-		<div class="loader" v-if="loading"></div>
 	</div>
 </body>
 </html>
