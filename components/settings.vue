@@ -7,7 +7,7 @@
 				<h1>{{fullname}}</h1>
 			</div>
 			<div class="profile-body">
-				<div class="settings" v-if="isMe">
+				<div class="settings">
 					<div class="group">
 						<div class="header">Personal</div>
 						<div class="setting">
@@ -70,7 +70,7 @@
 
 						<div class="setting">
 							<label>Max Views</label>
-							<input type="number" min="1" :value="main.maxViews" id="mxvws">
+							<input type="number" min="1" max="7" :value="main.maxViews" id="mxvws">
 							<div class="button-group">
 								<label>Set setting as:</label>
 								<button>Global</button>
@@ -106,7 +106,6 @@
 				firstname:'Stephan',
 				lastname:'Burger',
 				privacy: 'public',
-				isMe:true,
 
 				profileView:'posts',
 
@@ -121,17 +120,8 @@
 			}
 		},
 		computed:{
-			profileKey:function() {
-				return main.compKey.profile
-			},
 			fullname:function() {
 				return this.firstname + ' ' + this.lastname
-			}
-		},
-		watch:{
-			profileKey:function() {
-				alert('voker verander!!');
-				main.ViewComp('profile');
 			}
 		},
 		methods:{
@@ -165,32 +155,39 @@
 					}
 					setCookie('settingInitViews', initViewsCookie, 365);
 				}
-			}
-		},
-		mounted:function() {
-			var _this = this;
-			if (getCookie('settingInitViews') != "404") {
-				var cookie = getCookie('settingInitViews');
-				if (cookie.search(',') != -1) {
-					var data = cookie.split(',');
-					
-					data.forEach(function(item) {
-						for (var i = _this.availableViews.length - 1; i >= 0; i--) {
-							if(_this.availableViews[i].compName == item){
-								_this.selectedViews.push(_this.availableViews[i]);
-								_this.availableViews.splice(i, 1);
+			},
+			ready:function() {
+				console.log('ready');
+				var _this = this;
+				if (getCookie('settingInitViews') != "404") {
+					var cookie = getCookie('settingInitViews');
+					if (cookie.search(',') != -1) {
+						var data = cookie.split(',');
+						
+						data.forEach(function(item) {
+							for (var i = _this.availableViews.length - 1; i >= 0; i--) {
+								if(_this.availableViews[i].compName == item){
+									_this.selectedViews.push(_this.availableViews[i]);
+									_this.availableViews.splice(i, 1);
+								}
 							}
-						}
-					})
-				} else {
-					for (var i = this.availableViews.length - 1; i >= 0; i--) {
-						if(this.availableViews[i].compName == cookie){
-							this.selectedViews.push(_this.availableViews[i]);
-							this.availableViews.splice(i, 1);
+						})
+					} else {
+						for (var i = this.availableViews.length - 1; i >= 0; i--) {
+							if(this.availableViews[i].compName == cookie){
+								this.selectedViews.push(this.availableViews[i]);
+								this.availableViews.splice(i, 1);
+							}
 						}
 					}
 				}
 			}
+		},
+		mounted:function() {
+			var _this = this;
+			setTimeout(function() {
+				_this.ready()
+			},0)
 		}
 	}
 </script>

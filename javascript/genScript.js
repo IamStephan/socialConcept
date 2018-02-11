@@ -8,11 +8,7 @@ var component_mixins = {
 	props:['index']
 };
 
-var gen_mixins={
-	mounted:function() {
-		
-	}
-};
+var gen_mixins={};
 
 function init() {
 	console.log(getCookie('settingInitViews'))
