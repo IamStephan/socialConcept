@@ -1,6 +1,7 @@
 <template>
 	<div class="component">
 		<button @click="main.RemoveComp(index)">Close</button>
+		<button @click="main.ViewComp('settings')" v-if="index != 0">Move to top</button>
 		<div class="profile">
 			<div class="profile-header">
 				<div class="avatar"></div>
@@ -71,6 +72,15 @@
 						<div class="setting">
 							<label>Max Views</label>
 							<input type="number" min="1" max="7" :value="main.maxViews" id="mxvws">
+							<div class="button-group">
+								<label>Set setting as:</label>
+								<button>Global</button>
+								<button @click="setMaxViews()">Local</button>
+							</div>
+						</div>
+						<div class="setting">
+							<label>Component List</label>
+							<input type="checkbox" min="1" max="7" :value="main.maxViews" id="mxvws">
 							<div class="button-group">
 								<label>Set setting as:</label>
 								<button>Global</button>

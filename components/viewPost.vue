@@ -1,6 +1,7 @@
 <template>
 	<div class="component">
 		<button @click="main.RemoveComp(index)">Close</button>
+		<button @click="main.ViewComp('viewPost')" v-if="index != 0">Move to top</button>
 		<h1>Post</h1>
 		<div class="tile">
 			<div class="tile-header">

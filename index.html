@@ -20,7 +20,7 @@
 			</transition>
 		</div>
 		
-		<div class="component view">
+		<div class="component view">	
 			<transition-group tag="div" name="instaFade">
 				<component v-for="(view, index) in viewList" :is="view" :key="view" :index="index"></component>
 			</transition-group>

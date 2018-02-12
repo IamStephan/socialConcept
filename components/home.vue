@@ -4,6 +4,11 @@
 		<button @click="main.ViewComp('home')" v-if="index != 0">Move to top</button>
 		<h1>Home</h1>
 		<div class="feed">
+			<div class="filter">
+				<button>Gab</button>
+				<button>Notions</button>
+				<button>Video</button>
+			</div>
 			<div class="tile" v-for="n in 5">
 				<div class="tile-header">
 					<div class="tile-avatar"></div>

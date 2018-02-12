@@ -43,8 +43,10 @@ function init() {
 				if (this.viewList.length >= this.maxViews) {
 					this.viewList.pop();
 					this.viewList.unshift(comp);
+					this.loading = true;
 				} else {
 					this.viewList.unshift(comp);
+					this.loading = true;
 				}
 			},
 			RemoveComp:function(index, newView) {
@@ -53,7 +55,6 @@ function init() {
 					if (newView != null) {
 						this.ViewComp(newView);
 					}
-					return;
 				} else {
 					this.viewList.splice(index, 1);
 					if (newView != null) {
