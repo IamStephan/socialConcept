@@ -23,26 +23,35 @@
 			</div>
 			<div class="profile-body">
 				<div class="feed" v-if="profileView == 'posts'">
-					<div class="tile" v-for="n in 5">
+					<div class="tile" v-for="post in profilePosts">
 							<div class="tile-header">
 								<div class="tile-avatar"></div>
 								<div class="tile-head-info">
-									<div>Stephan burger</div>
-									<div>@tufff</div>
+									<div>{{fullname}}</div>
+									<div>@{{username}}</div>
 								</div>
 							</div>
 							<div class="tile-body">
 								<div class="tile-body-content">
-									<img src="http://localhost/social/1.jpg" style="height:100px;">
-									<div>This is the shit</div>
+									<img :src="post.url" style="height:100px;" v-if="post.type == 'image'">
+									<div>{{post.body}}</div>
 								</div>
 							</div>
 							<div class="tile-footer">
 								<div class="tile-footer-content">
-									<button>Like</button>
+									<button>Like {{post.likes}}</button>
 									<button>Share</button>
-									<button @click="main.compKey.post = Math.floor(Math.random() * 100);main.ViewComp('viewPost')">Comments {{Math.floor(Math.random() * 100)}}</button>
+									<button @click="main.compKey.post = post.id; main.ViewComp('viewPost')">Comments</button>
 								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="notifications" v-if="profileView == 'notifications'">
+						<div class="noti" v-for="n in 10">
+							<div class="message">{{n}}</div>
+							<div class="action">
+								<button>Close</button>
 							</div>
 						</div>
 					</div>

@@ -4,6 +4,23 @@ $(document).ready(function() {
 
 var main;
 
+var profilePosts=[
+	{id:1, type:'text', body:'Going to the park...', likes:30}
+];
+
+var feedPosts=[
+	{id:1, fullname:'Sannie Kak', username:'poopMain', type:'text', body:'You know when you fart and you just cant even', likes:30},
+	{id:2, fullname:'Kak Sannie', username:'doggyManner', type:'text', body:'When you do it with yo dog it aint so bad...', likes:4},
+	{id:3, fullname:'Tyler Swift', username:'Tailies', type:'image', body:'Ugh, cant believe im living here', url:'http://localhost/social/1.jpg', likes:72},
+	{id:4, fullname:'Leo Da vinci', username:'Oscar', type:'text', body:'Still waiting bitches', likes:45},
+	{id:5, fullname:'Bradley Cooper', username:'iqMate', type:'text', body:'Just one more, i promise.....', likes:45},
+	{id:6, fullname:'Lucifer Something', username:'666', type:'text', body:'HI there, :) ......', likes:45},
+	{id:7, fullname:'Katnis Mouw', username:'6plus9equels15', type:'text', body:'Ima be a pop star', likes:-9999},
+	{id:8, fullname:'katty pink', username:'PinkP', type:'text', body:'I like pink', likes:45},
+	{id:9, fullname:'Fullname', username:'Username', type:'text', body:'This is a post', likes:45},
+	{id:10, fullname:'Dustin Cant', username:'catEven', type:'text', body:'I cant even', likes:45}
+];
+
 var component_mixins = {
 	props:['index']
 };

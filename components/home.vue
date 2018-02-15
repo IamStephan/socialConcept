@@ -9,25 +9,25 @@
 				<button>Notions</button>
 				<button>Video</button>
 			</div>
-			<div class="tile" v-for="n in 5">
+			<div class="tile" v-for="post in feedPosts">
 				<div class="tile-header">
 					<div class="tile-avatar"></div>
 					<div class="tile-head-info">
-						<div>Stephan burger</div>
-						<div>@tufff</div>
+						<div>{{post.fullname}}</div>
+						<div>@{{post.username}}</div>
 					</div>
 				</div>
 				<div class="tile-body">
 					<div class="tile-body-content">
-						<img src="http://localhost/social/1.jpg" style="height:100px;">
-						<div>This is the shit</div>
+						<img :src="post.url" style="height:100px;" v-if="post.type == 'image'">
+						<div>{{post.body}}</div>
 					</div>
 				</div>
 				<div class="tile-footer">
 					<div class="tile-footer-content">
-						<button>Like</button>
+						<button>Like {{post.likes}}</button>
 						<button>Share</button>
-						<button @click="main.compKey.post = Math.floor(Math.random() * 100);main.ViewComp('viewPost')">Comments {{Math.floor(Math.random() * 100)}}</button>
+						<button @click="main.compKey.post = post.id; main.ViewComp('viewPost')">Comments</button>
 					</div>
 				</div>
 			</div>

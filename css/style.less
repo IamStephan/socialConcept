@@ -168,6 +168,31 @@ h6{
 			}
 		}
 	}
+	.notifications{
+		border: solid;
+		max-height: 400px;
+		overflow:auto;
+		padding: 5px;
+
+		.noti{
+			display: flex;
+			border: solid;
+			border-radius: 5px;
+			padding: 5px;
+			margin-bottom: 5px;
+
+			&:last-child{
+				margin-bottom:0px;
+			}
+
+			.message{
+				width: 100%;
+			}
+
+			.action{
+			}
+		}
+	}
 }
 
 .settings{
@@ -264,6 +289,8 @@ button.active{
 	display: flex;
 	justify-content: flex-start;
 }
+
+	
 /*===================================================
 					animations
 =====================================================*/

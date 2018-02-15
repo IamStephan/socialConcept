@@ -117,9 +117,8 @@
 				lastname:'Burger',
 				privacy: 'public',
 
-				profileView:'posts',
-
 				//layout Controll
+				preset:'Default',
 				availableViews:[
 					{compName:'home',alias:'Home (feed)'},
 					{compName:'profile',alias:'My profile'},
@@ -143,12 +142,12 @@
 				setCookie('settingMaxViews', value, 365);
 				main.maxViews = value;
 
-				this.checkViews();
+				this.UpdateViews();
 			},
-			checkViews:function() {
+			UpdateViews:function() {
 				if (main.viewList.length > main.maxViews) {
 					main.viewList.pop();
-					this.checkViews();
+					this.UpdateViews();
 				}
 			},
 			setInitViews:function() {
