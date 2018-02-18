@@ -160,9 +160,11 @@ function init() {
 			});
 
 			bus.$on('load', function() {
-				if (_this.viewList.length == $('.comp').length) {
-					_this.loadingComps = false;
-				}
+				_this.$nextTick(function() {
+					if (_this.viewList.length <= $('.comp').length) {
+						_this.loadingComps = false;
+					}
+				})
 			});
 			
 		}
