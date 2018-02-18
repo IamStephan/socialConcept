@@ -129,8 +129,17 @@ function init() {
 		},
 		mounted:function() {
 			var _this = this;
-			//initial views
 
+			//evvents
+			bus.$on('load', function() {
+				_this.$nextTick(function() {
+					if (_this.viewList.length <= $('.comp').length) {
+						_this.loadingComps = false;
+					}
+				})
+			});
+
+			//initial views
 			if (getCookie('settingInitViews') == "404") {
 				//default
 				this.initialViews.push('home')
@@ -154,19 +163,31 @@ function init() {
 			} else {
 				this.maxViews = getCookie('settingMaxViews');
 			}
+
+			//component query
+			var queryString = window.location.search;
+			if (queryString.indexOf('=') !== -1) {
+				var comp = queryString.slice(1, queryString.indexOf('=')).toLowerCase();
+				var val = queryString.slice(queryString.indexOf('='));
+				switch (comp){
+					case 'profile':
+					_this.ViewComp('profile');
+					_this.compKey.profile = val;
+					return;
+
+					case 'post':
+					_this.ViewComp('viewPost');
+					_this.compKey.post = val;
+					return;
+
+					default:
+					break;
+				}
+			}
 			
 			this.initialViews.forEach(function(item) {
 				_this.ViewComp(item);
 			});
-
-			bus.$on('load', function() {
-				_this.$nextTick(function() {
-					if (_this.viewList.length <= $('.comp').length) {
-						_this.loadingComps = false;
-					}
-				})
-			});
-			
 		}
 	})
 }
