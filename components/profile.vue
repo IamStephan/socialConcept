@@ -1,5 +1,5 @@
 <template>
-	<div class="component">
+	<div class="component comp">
 		<button @click="main.RemoveComp(index)">Close</button>
 		<button @click="main.ViewComp('profile')" v-if="index != 0">Move to top</button>
 		<div class="profile">

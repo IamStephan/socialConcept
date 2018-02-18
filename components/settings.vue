@@ -1,5 +1,5 @@
 <template>
-	<div class="component">
+	<div class="component comp">
 		<button @click="main.RemoveComp(index)">Close</button>
 		<button @click="main.ViewComp('settings')" v-if="index != 0">Move to top</button>
 		<div class="profile">
@@ -165,7 +165,7 @@
 					setCookie('settingInitViews', initViewsCookie, 365);
 				}
 			},
-			ready:function() {
+			Setup:function() {
 				console.log('ready');
 				var _this = this;
 				if (getCookie('settingInitViews') != "404") {
@@ -194,9 +194,9 @@
 		},
 		mounted:function() {
 			var _this = this;
-			setTimeout(function() {
-				_this.ready()
-			},0)
+			this.$nextTick(function() {
+				_this.Setup()
+			});
 		}
 	}
 </script>

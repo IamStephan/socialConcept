@@ -2,7 +2,7 @@ $(document).ready(function() {
 	init();
 });
 
-var main;
+var main, bus;
 
 var profilePosts=[
 	{id:1, type:'text', body:'Going to the park...', likes:30}
@@ -22,13 +22,23 @@ var feedPosts=[
 ];
 
 var component_mixins = {
-	props:['index']
+	props:['index'],
+	mounted:function() {
+		this.$nextTick(function() {
+			bus.$emit('load')
+		})
+	}
 };
 
-var gen_mixins={};
+var gen_mixins={
+	mounted:function() {
+		
+	}
+};
 
 function init() {
-	console.log(getCookie('settingInitViews'))
+	bus = new Vue();
+
 	main = new Vue({
 		el:'#main',
 		data:{
@@ -42,12 +52,15 @@ function init() {
 				post:null
 			},
 
+			loadingComps:true,
+
 			//Global settings
 			maxViews:null,
 			initialViews:[]
 		},
 		methods:{
 			ViewComp:function(comp) {
+				
 				$('body').scrollTop(0);
 				for (var i = this.viewList.length - 1; i >= 0; i--) {
 					if (this.viewList[i] == comp) {
@@ -57,6 +70,8 @@ function init() {
 						return;
 					}
 				}
+
+				this.loadingComps = true;
 				if (this.viewList.length >= this.maxViews) {
 					this.viewList.pop();
 					this.viewList.unshift(comp);
@@ -142,7 +157,13 @@ function init() {
 			
 			this.initialViews.forEach(function(item) {
 				_this.ViewComp(item);
-			})
+			});
+
+			bus.$on('load', function() {
+				if (_this.viewList.length == $('.comp').length) {
+					_this.loadingComps = false;
+				}
+			});
 			
 		}
 	})
