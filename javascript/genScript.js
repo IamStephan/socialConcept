@@ -4,6 +4,10 @@ $(document).ready(function() {
 
 var main, bus;
 
+
+/*===============
+	Dummy data
+=================*/
 var profilePosts=[
 	{id:1, type:'text', body:'Going to the park...', likes:30}
 ];
@@ -30,11 +34,7 @@ var component_mixins = {
 	}
 };
 
-var gen_mixins={
-	mounted:function() {
-		
-	}
-};
+var gen_mixins={};
 
 function init() {
 	bus = new Vue();
@@ -48,6 +48,7 @@ function init() {
 
 			compKey:{
 				profile:1,
+				connections:null,
 				group:null,
 				post:null
 			},
@@ -106,31 +107,28 @@ function init() {
 			}
 		},
 		components:{
-			/*
-				planned Components
+			/*	planned Components
 				===================
-					-->profile
-					-->feed
 					-->groups
 					-->login/reg
-					-->New post (just text)
-			*/
-			sidebar:httpVueLoader('./components/sidebar.vue'),
-			topbar:httpVueLoader('./components/topbar.vue'),
+				===================*/
+			sidebar: httpVueLoader('./components/sidebar.vue'),
+			topbar: httpVueLoader('./components/topbar.vue'),
 
 			//internal components
-			home:httpVueLoader('./components/home.vue'),
-			profile:httpVueLoader('./components/profile.vue'),
-			group:httpVueLoader('./components/group.vue'),
-			newPost:httpVueLoader('./components/newPost.vue'),
-			viewPost:httpVueLoader('./components/viewPost.vue'),
-			settings:httpVueLoader('./components/settings.vue')
+			home: httpVueLoader('./components/home.vue'),
+			profile: httpVueLoader('./components/profile.vue'),
+			connections: httpVueLoader('./components/connections.vue'),
+			group: httpVueLoader('./components/group.vue'),
+			newPost: httpVueLoader('./components/newPost.vue'),
+			viewPost: httpVueLoader('./components/viewPost.vue'),
+			settings: httpVueLoader('./components/settings.vue')
 
 		},
 		mounted:function() {
 			var _this = this;
 
-			//evvents
+			//events
 			bus.$on('load', function() {
 				_this.$nextTick(function() {
 					if (_this.viewList.length <= $('.comp').length) {
@@ -168,7 +166,7 @@ function init() {
 			var queryString = window.location.search;
 			if (queryString.indexOf('=') !== -1) {
 				var comp = queryString.slice(1, queryString.indexOf('=')).toLowerCase();
-				var val = queryString.slice(queryString.indexOf('='));
+				var val = queryString.slice(queryString.indexOf('=') + 1);
 				switch (comp){
 					case 'profile':
 					_this.ViewComp('profile');

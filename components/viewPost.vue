@@ -58,12 +58,12 @@
 			}
 		},
 		computed:{
-			postKey:function() {
+			viewKey:function() {
 				return main.compKey.post
 			}
 		},
 		watch:{
-			postKey:function() {
+			viewKey:function() {
 				alert('voker verander!!');
 			}
 		}

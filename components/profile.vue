@@ -7,6 +7,10 @@
 				<div class="avatar"></div>
 				<h1>{{fullname}}</h1>
 				<div>@{{username}}</div>
+				<div class="button-group">
+					<button @click="main.ViewComp('connections')">Connections</button>
+					<button>Followers</button>
+				</div>
 			</div>
 			<div class="profile-nav">
 				<div class="item" 

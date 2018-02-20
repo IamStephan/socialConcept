@@ -22,8 +22,8 @@
 						<div class="setting">
 							<label>Details</label>
 							<div class="input-group">
-								<input type="" v-model="firstname">
-								<input type="" v-model="lastname">
+								<input type="" v-model="firstname" placeholder="First Name">
+								<input type="" v-model="lastname" placeholder="Last Name">
 								<div class="button-group">
 									<button>Save</button>
 								</div>

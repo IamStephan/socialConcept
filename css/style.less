@@ -1,5 +1,6 @@
 html{
 	overflow:hidden;
+
 }
 body{
 	overflow:scroll;
@@ -12,7 +13,7 @@ body{
 	padding: 0px;
 	overflow-x: hidden;
 	height:100%;
-	font-family: lato;
+	font-family: lato, arial;
 	color: #303030
 }
 
@@ -43,6 +44,11 @@ h6{
 		&:last-child{
 			margin-bottom: 0px;
 		}
+
+		&.loading{
+			display: flex;
+			justify-content: center;
+		}
 	}
 }
 
@@ -56,6 +62,7 @@ h6{
 		border: solid;
 		margin-bottom: 5px;
 		display: flex;
+		justify-content: center;
 	}
 }
 
@@ -75,6 +82,11 @@ h6{
 			height: 50px;
 			border-radius: 50%;
 			display: inline-block;
+
+			&.small-avatar{
+				width: 30px;
+				height: 30px;
+			}
 		}
 
 		.tile-head-info{
@@ -138,6 +150,12 @@ h6{
 	}
 }
 	
+.profiles{
+	border: solid;
+	max-height: 400px;
+	overflow: auto;
+	padding: 5px;
+}
 
 .avatar{
 	border: solid;
@@ -145,6 +163,11 @@ h6{
 	height: 50px;
 	border-radius: 50%;
 	display: inline-block;
+
+	&.small{
+		width: 25px;
+		height: 25px;
+	}
 }
 
 .profile{
@@ -296,7 +319,16 @@ button.disabled{
 	justify-content: flex-start;
 }
 
-	
+.loader{
+	width: 50px;
+	height: 50px;
+	border:solid;
+	border-color: #B24C4C;
+	border-left-color: transparent;
+	border-right-color: transparent; 
+	border-radius: 50%;
+	animation: spin 0.5s infinite
+}
 /*===================================================
 					animations
 =====================================================*/
@@ -364,6 +396,17 @@ button.disabled{
 	width: 100%;
 }
 .instaFade-move {
+  transition: transform 0.25s;
+}
+
+.fade-enter-active{
+	animation: fade .15s;
+}
+.fade-leave-active{
+	animation: fade .15s reverse;
+	width: 100%;
+}
+.fade-move {
   transition: transform 0.25s;
 }
 /*===================================================

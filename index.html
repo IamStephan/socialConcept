@@ -21,7 +21,10 @@
 		</div>
 		
 		<div class="component view">
-			<div class="component" v-if="loadingComps">loading</div>
+			<div class="component loading" v-if="loadingComps">
+				<div class="loader"></div>
+			</div>
+				
 			<transition-group tag="div" name="instaFade">
 				<component v-for="(view, index) in viewList" :is="view" :key="view" :index="index"></component>
 			</transition-group>
