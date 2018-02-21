@@ -64,7 +64,7 @@
 		},
 		watch:{
 			viewKey:function() {
-				alert('voker verander!!');
+				main.Toast('Voker verander!',12000);
 			}
 		}
 	}

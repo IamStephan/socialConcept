@@ -59,13 +59,16 @@ function init() {
 			initialViews:[],
 
 			//toast
-			toasts:[],
+			toastsQueue:[],
 			toast:[]
 		},
 		watch:{
 			toast:function() {
-				if (this.toast.length == 0) {
-
+				var _this = this;
+				if (this.toast.length > 0) {
+					setTimeout(function() {
+						_this.RemoveToast();
+					},_this.toast[0].timer)
 				}
 			}
 		},
@@ -74,19 +77,21 @@ function init() {
 				if (dur == null) {
 					dur = 2000;
 				}
+
 				if (this.toast.length == 0) {
-					this.toast.push({message:message, timer:function() {setTimeout(function() {main.RemoveToast()},dur)}});
+					this.toast.push({message:message, timer:dur});
 				} else {
-					this.toasts.push({message:message, timer:function() {setTimeout(function() {main.RemoveToast()},dur)}});
+					this.toastsQueue.push({message:message, timer:dur});
 				}
 			},
 			RemoveToast:function() {
+
 				this.toast.pop();
 				var _this = this;
 
 				this.$nextTick(function() {
-					if (_this.toasts.length > 0) {
-						var newToast = _this.toasts.shift();
+					if (_this.toastsQueue.length > 0) {
+						var newToast = _this.toastsQueue.shift();
 						_this.toast.push(newToast);
 					}
 				});
