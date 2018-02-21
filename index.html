@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<div id="preloader" style="position: fixed; width: 200%; height: 200%; background-color: white; z-index: 999; transform: translate(-50%,-50%);"></div>
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
 	<title>Social Test</title>
@@ -14,6 +15,7 @@
 </head>
 <body>
 	<div id="main">
+		
 		<div>
 			<transition>
 				<topbar></topbar>
@@ -28,6 +30,14 @@
 			<transition-group tag="div" name="instaFade">
 				<component v-for="(view, index) in viewList" :is="view" :key="view" :index="index"></component>
 			</transition-group>
+		</div>
+
+		<div>
+			<transition name="fade" mode="out-in">
+				<div v-for="toa in toast" class="toast" v-if="toast.lenth != 0">
+					<div>{{toa.message}} {{toa.timer()}}</div>
+				</div>
+			</transition>
 		</div>
 	</div>
 </body>

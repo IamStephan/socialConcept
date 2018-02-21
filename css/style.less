@@ -329,6 +329,25 @@ button.disabled{
 	border-radius: 50%;
 	animation: spin 0.5s infinite
 }
+
+.toast{
+	position:fixed;
+	bottom:10px;
+	left: 50%;
+	display: inline-block;
+	border: solid;
+	transform: translateX(-50%);
+	background-color: #303030;
+	color: white;
+	border-radius: 0.25em;
+	padding:2px;
+	border-color: #303030;
+	z-index: 998;
+
+	&.hide{
+		display: none;
+	}
+}
 /*===================================================
 					animations
 =====================================================*/
@@ -404,7 +423,6 @@ button.disabled{
 }
 .fade-leave-active{
 	animation: fade .15s reverse;
-	width: 100%;
 }
 .fade-move {
   transition: transform 0.25s;

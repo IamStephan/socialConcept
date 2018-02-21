@@ -65,7 +65,7 @@
 							<div class="button-group">
 								<label>Set setting as:</label>
 								<button>Global</button>
-								<button @click="setInitViews()">Local</button>
+								<button @click="setInitViews();main.Toast('Saved', 1000);">Local</button>
 							</div>
 						</div>
 
@@ -75,7 +75,7 @@
 							<div class="button-group">
 								<label>Set setting as:</label>
 								<button>Global</button>
-								<button @click="setMaxViews()">Local</button>
+								<button @click="setMaxViews();main.Toast('Saved', 1000);">Local</button>
 							</div>
 						</div>
 						<div class="setting">
@@ -84,7 +84,7 @@
 							<div class="button-group">
 								<label>Set setting as:</label>
 								<button>Global</button>
-								<button @click="setMaxViews()">Local</button>
+								<button @click="setMaxViews();">Local</button>
 							</div>
 						</div>
 					</div>

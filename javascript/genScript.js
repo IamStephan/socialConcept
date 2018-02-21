@@ -44,22 +44,53 @@ function init() {
 		data:{
 			viewList:[],
 
-			sidebar:true,
-
+			//component identifiers
 			compKey:{
 				profile:1,
 				connections:null,
 				group:null,
 				post:null
 			},
-
+			//loading
 			loadingComps:true,
 
 			//Global settings
 			maxViews:null,
-			initialViews:[]
+			initialViews:[],
+
+			//toast
+			toasts:[],
+			toast:[]
+		},
+		watch:{
+			toast:function() {
+				if (this.toast.length == 0) {
+
+				}
+			}
 		},
 		methods:{
+			Toast:function(message, dur) {
+				if (dur == null) {
+					dur = 2000;
+				}
+				if (this.toast.length == 0) {
+					this.toast.push({message:message, timer:function() {setTimeout(function() {main.RemoveToast()},dur)}});
+				} else {
+					this.toasts.push({message:message, timer:function() {setTimeout(function() {main.RemoveToast()},dur)}});
+				}
+			},
+			RemoveToast:function() {
+				this.toast.pop();
+				var _this = this;
+
+				this.$nextTick(function() {
+					if (_this.toasts.length > 0) {
+						var newToast = _this.toasts.shift();
+						_this.toast.push(newToast);
+					}
+				});
+			},
 			ViewComp:function(comp) {
 				
 				$('body').scrollTop(0);
@@ -127,6 +158,9 @@ function init() {
 		},
 		mounted:function() {
 			var _this = this;
+
+			//remove preloader
+			$("#preloader").remove();
 
 			//events
 			bus.$on('load', function() {
