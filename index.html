@@ -39,6 +39,19 @@
 				</div>
 			</transition>
 		</div>
+
+		<!--=====================================================================================================
+													Dev Notifications
+			=====================================================================================================-->
+		<div>
+			<transition name="fade" mode="out-in">
+				<div v-for="notify in notifi" class="devNotify" v-if="notifi.lenth != 0" @click="RemoveNotifi()">
+					<div class="title"><b>{{notify.title}}</b></div>
+					<div class="message">{{notify.message}}</div>
+				</div>
+			</transition>
+		</div>
+		<!--======================================================================================================-->
 	</div>
 </body>
 </html>

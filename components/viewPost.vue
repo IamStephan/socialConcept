@@ -64,7 +64,7 @@
 		},
 		watch:{
 			viewKey:function() {
-				main.Toast('Voker verander!',12000);
+				main.Notify('Change detect','A new key has been selected for the viewPost component');
 			}
 		}
 	}

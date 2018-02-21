@@ -345,9 +345,29 @@ button.disabled{
 	z-index: 998;
 	max-width: 150px;
 	text-align: center;
-
-	&.hide{
-		display: none;
+}
+.devNotify{
+	position:fixed;
+	top: 10px;
+	right: 20px;
+	display: inline-block;
+	color: white;
+	padding:2px;
+	z-index: 998;
+	max-width: 80%;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	
+	.title{
+		background-color: #B24C4C;
+		padding:2px;
+		border-radius: 0.25em 0.25em 0px 0px;
+	}
+	.message{
+		background-color: lighten(#B24C4C, 10%);
+		padding:10px;
+		border-radius: 0px 0px .25em .25em;
 	}
 }
 /*===================================================

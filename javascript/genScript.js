@@ -60,7 +60,14 @@ function init() {
 
 			//toast
 			toastsQueue:[],
-			toast:[]
+			toast:[],
+
+			/*=================
+					Dev help
+			===================*/
+			notifisQueue:[],
+			notifi:[]
+			/*=================*/
 		},
 		watch:{
 			toast:function() {
@@ -96,6 +103,31 @@ function init() {
 					}
 				});
 			},
+
+			/*=====================================================================
+											Dev Help
+			=======================================================================*/
+			Notify:function(title, message) {
+
+				if (this.notifi.length == 0) {
+					this.notifi.push({title:title, message:message});
+				} else {
+					this.notifisQueue.push({title:title, message:message});
+				}
+			},
+			RemoveNotifi:function() {
+
+				this.notifi.pop();
+				var _this = this;
+
+				this.$nextTick(function() {
+					if (_this.notifisQueue.length > 0) {
+						var newToast = _this.notifisQueue.shift();
+						_this.notifi.push(newToast);
+					}
+				});
+			},
+			//====================================================================
 			ViewComp:function(comp) {
 				
 				$('body').scrollTop(0);
