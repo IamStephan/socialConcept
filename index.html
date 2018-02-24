@@ -27,7 +27,7 @@
 				<div class="loader"></div>
 			</div>
 				
-			<transition-group tag="div" name="instaFade">
+			<transition-group tag="div" name="slide">
 				<component v-for="(view, index) in viewList" :is="view" :key="view" :index="index"></component>
 			</transition-group>
 		</div>

@@ -373,26 +373,19 @@ button.disabled{
 /*===================================================
 					animations
 =====================================================*/
-@keyframes slide-right-in{
+@keyframes slide-in{
 	from{
-		transform: translateX(-100%);
+		transform: translateY(-5%);
 		opacity: 0;
 	}
 	to{
-		transform: translateX(0%);
+		transform: translateY(0%);
 		opacity: 1;
 	}
 }
-
-@keyframes slide-right-out{
-	from{
-		transform: translateX(0%);
-		opacity:1;
-	}
-	to{
-		transform: translateX(100%);
-		opacity:0;
-	}
+@keyframes slide-out{
+	from{opacity: 0;}
+	to{opacity: 0;}
 }
 
 @keyframes fade{
@@ -409,20 +402,17 @@ button.disabled{
 }
 
 @keyframes spin{
-	from{
-		transform: rotate(0deg);
-	}
-	to{
-		transform: rotate(360deg);
-	}
+	from{transform: rotate(0deg);}
+	to{transform: rotate(360deg);}
 }
 
 .slide-enter-active{
-	animation: slide-right-in .15s;
+	animation: slide-in .15s;
 }
 
 .slide-leave-active{
-	animation: slide-right-out .15s;
+	animation: slide-out .15s;
+	position: absolute;
 }
 .slide-move {
   transition: transform .15s;
