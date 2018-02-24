@@ -154,6 +154,7 @@ function init() {
 				
 				if (this.viewList.length == 1) {
 					if (newView != null) {
+						this.viewList.splice(index, 1);
 						this.ViewComp(newView);
 					}
 				} else {

@@ -120,7 +120,7 @@
 				//layout Controll
 				preset:'Default',
 				availableViews:[
-					{compName:'home',alias:'Home (feed)'},
+					{compName:'home',alias:'Home'},
 					{compName:'profile',alias:'My profile'},
 					{compName:'newPost', alias:'New post'}
 				],
