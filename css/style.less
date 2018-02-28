@@ -1,3 +1,4 @@
+@border: solid;
 html{
 	overflow:hidden;
 
@@ -30,20 +31,23 @@ h6{
 .component.view{
 	margin: auto;
 	max-width: 720px;
-	border: solid;
+	border: @border;
 	padding: 5px;
 	margin-bottom: 5px;
 	margin-top: 5px;
 
 	.component{
-		border: solid;
+		border: @border;
 		background-color: white;
 		padding: 5px;
 		margin-bottom: 50px;
 
 		.internalNav{
 			display: flex;
-			justify-content: flex-end;
+
+			&.right{
+				justify-content: flex-end;
+			}
 		}
 
 		&:last-child{
@@ -61,10 +65,10 @@ h6{
 	max-height: 450px;
 	overflow: auto;
 	padding: 5px;
-	border: solid;
+	border: @border;
 
 	.filter{
-		border: solid;
+		border: @border;
 		margin-bottom: 5px;
 		display: flex;
 		justify-content: center;
@@ -72,7 +76,7 @@ h6{
 }
 
 .tile{
-	border: solid;
+	border: @border;
 	margin-bottom: 5px;
 
 	&:last-child{
@@ -82,7 +86,7 @@ h6{
 		padding: 5px;
 
 		.tile-avatar{
-			border: solid;
+			border: @border;
 			width: 50px;
 			height: 50px;
 			border-radius: 50%;
@@ -108,7 +112,7 @@ h6{
 		padding-right: 15px;
 
 		.tile-body-content{
-			border: solid;
+			border: @border;
 			border-radius: 5px 5px 0px 0px;
 			padding: 5px;
 		}
@@ -121,7 +125,7 @@ h6{
 		.tile-footer-content{
 			display: flex;
 			justify-content: space-around;
-			border:solid;
+			border:@border;
 			border-top: none;
 			border-radius :0px 0px 5px 5px;
 			padding: 5px;
@@ -130,7 +134,7 @@ h6{
 }
 
 .comments{
-	border: solid;
+	border: @border;
 	max-height: 400px;
 	overflow: auto;
 	padding: 5px;
@@ -156,14 +160,14 @@ h6{
 }
 	
 .profiles{
-	border: solid;
+	border: @border;
 	max-height: 400px;
 	overflow: auto;
 	padding: 5px;
 }
 
 .avatar{
-	border: solid;
+	border: @border;
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
@@ -192,19 +196,19 @@ h6{
 			cursor: pointer;
 
 			&.active{
-				border-bottom: solid;
+				border-bottom: @border;
 			}
 		}
 	}
 	.notifications{
-		border: solid;
+		border: @border;
 		max-height: 400px;
 		overflow:auto;
 		padding: 5px;
 
 		.noti{
 			display: flex;
-			border: solid;
+			border: @border;
 			border-radius: 5px;
 			padding: 5px;
 			margin-bottom: 5px;
@@ -224,13 +228,13 @@ h6{
 }
 
 .settings{
-	border: solid;
+	border: @border;
 	padding: 5px;
 	max-height: 400px;
 	overflow: auto;
 
 	.group{
-		border: solid;
+		border: @border;
 		padding:5px;
 
 		.header{
@@ -239,7 +243,7 @@ h6{
 		}
 
 		.setting{
-			border: solid;
+			border: @border;
 			margin-bottom: 5px;
 			padding: 5px;
 
@@ -256,10 +260,10 @@ h6{
 
 				.item-list{
 					width: 100%;
-					border: solid;
+					border: @border;
 
 					label{
-						border-bottom: solid;
+						border-bottom: @border;
 					}
 
 					.item{
@@ -295,7 +299,7 @@ button.disabled{
 
 .post{
 	.new.post{
-		border: solid;
+		border: @border;
 		display: flex;
 		flex-wrap: wrap;
 		border-radius: 5px 5px 0px 0px;
@@ -307,7 +311,7 @@ button.disabled{
 		}
 	}
 	.options{
-		border: solid;
+		border: @border;
 		border-top: none;
 		border-radius: 0px 0px 5px 5px;
 		padding: 5px;
@@ -317,7 +321,7 @@ button.disabled{
 }
 	
 .post.buttons{
-	border: solid;
+	border: @border;
 	padding: 5px;
 	margin-top: 5px;
 	display: flex;
@@ -327,7 +331,7 @@ button.disabled{
 .loader{
 	width: 50px;
 	height: 50px;
-	border:solid;
+	border:@border;
 	border-color: #B24C4C;
 	border-left-color: transparent;
 	border-right-color: transparent; 

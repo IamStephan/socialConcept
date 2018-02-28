@@ -43,8 +43,9 @@ function init() {
 	Vue.component('internavcomp',{
 		props:['index', 'compName'],
 		template: [
-			'<div class="internalNav" v-if="main.maxViews != 1 && main.viewList.length != 1">',
-				'<button @click="main.RemoveComp(index)">Close</button>',
+			'<div class="internalNav" :class="{right: main.maxViews != 1}">',
+				'<button v-if="main.maxViews == 1">Back</button>',
+				'<button @click="main.RemoveComp(index)" v-if="main.maxViews != 1 && main.viewList.length != 1">Close</button>',
 				'<button @click="main.ViewComp(compName)" v-if="index != 0">Move to top</button>',
 			'</div>'
 			].join('')
