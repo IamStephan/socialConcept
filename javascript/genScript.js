@@ -48,7 +48,7 @@ function init() {
 				'<button @click="main.ViewComp(compName)" v-if="index != 0">Move to top</button>',
 			'</div>'
 			].join('')
-	})
+	});
 
 	main = new Vue({
 		el:'#main',
@@ -62,6 +62,9 @@ function init() {
 				group:null,
 				post:null
 			},
+
+			history:[],
+			
 			//loading
 			loadingComps:true,
 
@@ -140,7 +143,32 @@ function init() {
 			},
 			//====================================================================
 			ViewComp:function(comp) {
-				
+				//for back travel if maxViews are set to 1
+				if (this.maxViews == 1) {
+					var _this = this;
+					switch(comp){
+						case 'profile':
+							var push = comp + '=' + this.compKey.profile;
+							this.history.push(push);
+							break;
+						case 'connections':
+							var push = comp + '=' + this.compKey.connections;
+							this.history.push(push);
+							break;
+						case 'groups':
+							var push = comp + '=' + this.compKey.group;
+							this.history.push(push);
+							break;
+						case 'viewPost':
+							var push = comp + '=' + this.compKey.post;
+							this.history.push(push);
+							break;
+						default:
+							this.history.push(comp);
+					}
+					console.log(_this.history);
+				}
+
 				$('body').scrollTop(0);
 				for (var i = this.viewList.length - 1; i >= 0; i--) {
 					if (this.viewList[i] == comp) {
