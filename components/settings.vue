@@ -37,6 +37,17 @@
 						</div>
 					</div>
 					<div class="group">
+						<div class="header">Presets</div>
+						<div class="setting">
+							<select v-model="preset">
+								<option value="basic">Basic</option>
+								<option value="mobile">Mobile</option>
+								<option value="create">Creator</option>
+								<option value="custom">Custom</option>
+							</select>
+						</div>
+					</div>
+					<div class="group" v-if='preset == "custom"'>
 						<div class="header">Layout Control</div>
 						<div class="setting">
 							<label>Initial Views</label>
@@ -64,7 +75,7 @@
 							<div class="button-group">
 								<label>Set setting as:</label>
 								<button>Global</button>
-								<button @click="setInitViews();main.Toast('Saved', 1000);">Local</button>
+								<button @click="setInitViews()">Local</button>
 							</div>
 						</div>
 
@@ -74,7 +85,7 @@
 							<div class="button-group">
 								<label>Set setting as:</label>
 								<button>Global</button>
-								<button @click="setMaxViews();main.Toast('Saved', 1000);">Local</button>
+								<button @click="setMaxViews()">Local</button>
 							</div>
 						</div>
 						<div class="setting">
@@ -84,17 +95,6 @@
 								<label>Set setting as:</label>
 								<button>Global</button>
 								<button @click="setMaxViews();">Local</button>
-							</div>
-						</div>
-					</div>
-					<div class="group">
-						<div class="header">Theme</div>
-						<div class="setting">
-							<label>Main Color</label>
-							<div class="button-group">
-								<button>Red</button>
-								<button>Green</button>
-								<button>Blue</button>
 							</div>
 						</div>
 					</div>
@@ -116,8 +116,8 @@
 				lastname:'Burger',
 				privacy: 'public',
 
-				//layout Controll
-				preset:'Default',
+				//layout Control
+				preset:'custom',
 				availableViews:[
 					{compName:'home',alias:'Home'},
 					{compName:'profile',alias:'My profile'},
@@ -140,6 +140,7 @@
 				}
 				setCookie('settingMaxViews', value, 365);
 				main.maxViews = value;
+				main.Toast('Saved', 1000);
 
 				this.UpdateViews();
 			},
@@ -163,6 +164,7 @@
 					}
 					setCookie('settingInitViews', initViewsCookie, 365);
 				}
+				main.Toast('Saved', 1000);
 			},
 			Setup:function() {
 				console.log('ready');

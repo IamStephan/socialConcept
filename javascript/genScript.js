@@ -65,6 +65,7 @@ function init() {
 			},
 
 			history:[],
+			pointInHistory:0,
 			
 			//loading
 			loadingComps:true,
