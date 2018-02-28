@@ -1,3 +1,4 @@
+'use strict';
 $(document).ready(function() {
 	init();
 });
@@ -38,6 +39,16 @@ var gen_mixins={};
 
 function init() {
 	bus = new Vue();
+
+	Vue.component('internavcomp',{
+		props:['index', 'compName'],
+		template: [
+			'<div class="internalNav" v-if="main.maxViews != 1 && main.viewList.length != 1">',
+				'<button @click="main.RemoveComp(index)">Close</button>',
+				'<button @click="main.ViewComp(compName)" v-if="index != 0">Move to top</button>',
+			'</div>'
+			].join('')
+	})
 
 	main = new Vue({
 		el:'#main',
@@ -192,7 +203,6 @@ function init() {
 			newPost: httpVueLoader('./components/newPost.vue'),
 			viewPost: httpVueLoader('./components/viewPost.vue'),
 			settings: httpVueLoader('./components/settings.vue')
-
 		},
 		mounted:function() {
 			var _this = this;

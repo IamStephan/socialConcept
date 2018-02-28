@@ -1,7 +1,6 @@
 <template>
 	<div class="component comp">
-		<button @click="main.RemoveComp(index)">Close</button>
-		<button @click="main.ViewComp('settings')" v-if="index != 0">Move to top</button>
+		<internavcomp :index='index' comp-name='settings'></internavcomp>
 		<div class="profile">
 			<div class="profile-header">
 				<div class="avatar"></div>

@@ -1,7 +1,6 @@
 <template>
 	<div class="component comp">
-		<button @click="main.RemoveComp(index)">Close</button>
-		<button @click="main.ViewComp('newPost')" v-if="index != 0">Move to top</button>
+		<internavcomp :index='index' comp-name='newPost'></internavcomp>
 		<h1>New Post</h1>
 
 		<div class="post">

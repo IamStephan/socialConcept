@@ -1,7 +1,6 @@
 <template>
 	<div class="component comp">
-		<button @click="main.RemoveComp(index)">Close</button>
-		<button @click="main.ViewComp('home')" v-if="index != 0">Move to top</button>
+		<internavcomp :index='index' comp-name='home'></internavcomp>
 		<h1>Home</h1>
 		<div class="stream">
 			<div class="filter">
